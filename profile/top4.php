@@ -133,11 +133,11 @@ Template Name: toppage4
 						<div class="takasa30 hidden-lg hidden-md"></div>
 						<div class="haba90">
 							<div class="text-center">
-								<h2 class="brandtitle zero">プロフィール</h2>
+								<h2 class="brandtitle zero">PROFILE</h2>
 							</div>
 							<div class="blueline"></div>
 							<p>
-								私のプロフィール、スキルセット、保有資格、実務経験、使用プログラム言語、ツールを紹介しています。<br />
+								FAIL!私のプロフィール、スキルセット、保有資格、実務経験、使用プログラム言語、ツールを紹介しています。<br />
 								これまでに在籍した会社とその会社内における業務内容および履歴書と職務経歴書もダウンロードできます。<br />
 							</p>
 						</div>
