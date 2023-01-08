@@ -1,1 +1,1 @@
-rsync -acvz --delete ./ alma@153.121.72.40:/var/www/html/wp-portfolio/wp-content/themes/
+rsync -acvz --delete ./ alma@153.121.72.40:/var/www/html/
