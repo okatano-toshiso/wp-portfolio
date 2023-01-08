@@ -1,0 +1,1 @@
+rsync -acvz --delete /var/www/html/wp-portfolio/wp-content/themes/ webt@nuevo.ip.addres:project/
