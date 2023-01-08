@@ -133,7 +133,7 @@ Template Name: toppage4
 						<div class="takasa30 hidden-lg hidden-md"></div>
 						<div class="haba90">
 							<div class="text-center">
-								<h2 class="brandtitle zero">PRO1234FILE555</h2>
+								<h2 class="brandtitle zero">PROFILE</h2>
 							</div>
 							<div class="blueline"></div>
 							<p>
