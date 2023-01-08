@@ -1,6 +1,6 @@
 # wp-portfolio
 
-test
+
 
 WORDPRESSでポートフォリオサイトをリメイクする
 基本は同じ
