@@ -1,6 +1,6 @@
 # wp-portfolio
 
-
+kokokokokoko
 
 WORDPRESSでポートフォリオサイトをリメイクする
 基本は同じ5555
