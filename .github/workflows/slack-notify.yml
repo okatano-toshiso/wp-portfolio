@@ -1,4 +1,4 @@
-name: z Slack Notify
+name: slack notify
 
 on:
 	workflow_dispatch:
