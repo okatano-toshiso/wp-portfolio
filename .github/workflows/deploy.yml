@@ -18,11 +18,10 @@ jobs:
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
           ARGS: "-rlgoDzvc -i"
-          SOURCE: "profile/"
+          SOURCE: "./"
           REMOTE_HOST: ${{ secrets.IP_ADDRESS }}
           REMOTE_USER: ${{ secrets.USER }}
           TARGET: '/var/www/html/'
-          EXCLUDE: "/dist/, /node_modules/"
           SCRIPT_BEFORE: |
             whoami
             ls -al
