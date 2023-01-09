@@ -1,7 +1,10 @@
 name: Slack notify
 
 on:
-  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   notify:
@@ -21,7 +24,7 @@ jobs:
                       "type": "header",
                       "text": {
                         "type": "plain_text",
-                        "text": "Message Header",
+                        "text": "Request for approve",
                         "emoji": true
                       }
                     },
@@ -29,7 +32,7 @@ jobs:
                       "type": "section",
                       "text": {
                         "type": "mrkdwn",
-                        "text": "Hello World :ghost:"
+                        "text": "${{ github.server_url }}/${{github.respository}}/actions/runs/${{github.run_id}}/"
                       }
                     }
                   ]
