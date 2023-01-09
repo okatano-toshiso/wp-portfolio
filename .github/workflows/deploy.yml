@@ -13,19 +13,35 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Deploy to Staging server
-        uses: easingthemes/ssh-deploy@main
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
-          ARGS: "-rlgoDzvc -i"
-          SOURCE: "./"
-          REMOTE_HOST: ${{ secrets.IP_ADDRESS }}
-          REMOTE_USER: ${{ secrets.USER }}
-          TARGET: '/var/www/html/'
-          SCRIPT_BEFORE: |
-            whoami
-            ls -al
-          SCRIPT_AFTER: |
-            whoami
-            ls -al
-            echo $RSYNC_STDOUT
+      # - name: Deploy to Staging server
+      #   uses: easingthemes/ssh-deploy@main
+      #   env:
+      #     SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
+      #     ARGS: "-rlgoDzvc -i"
+      #     SOURCE: "./"
+      #     REMOTE_HOST: ${{ secrets.IP_ADDRESS }}
+      #     REMOTE_USER: ${{ secrets.USER }}
+      #     TARGET: '/var/www/html/'
+      #     SCRIPT_BEFORE: |
+      #       whoami
+      #       ls -al
+      #     SCRIPT_AFTER: |
+      #       whoami
+      #       ls -al
+      #       echo $RSYNC_STDOUT
+
+      # 秘密鍵を設置
+      - name: ssh key generate
+        run: |
+          mkdir -p ~/.ssh/
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+      # ssh rsync実行
+      # -a コピー元のディレクトリを再帰的にオーナー・グループ・パーミッション・タイムスタンプをそのままコピーします。
+      # -h でファイルサイズの視認性をよくする。
+      # -v 詳細を出力する。
+      # -z 圧縮転送
+      # -e ssh指定
+      - name: Deploy
+        run: rsync -ahvz -e "ssh -i ~/.ssh/id_rsa -p 22 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" ./ ${{ secrets.USER }}@${{ secrets.IP_ADDRESS }}:/var/www/html/ --include-from=".github/rsync_include.txt" --exclude-from=".github/rsync_exclude.txt"
