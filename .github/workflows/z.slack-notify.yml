@@ -4,7 +4,7 @@ on:
 	workflow_dispatch:
 
 jobs:
-	notify:
+  notify:
 		name: Slack notify
 		runs-on: ubuntu-latest
 		steps:
