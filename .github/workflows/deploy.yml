@@ -1,0 +1,22 @@
+name: PHP Composer
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install SSH key
+      uses: shimataro/ssh-key-action@v2
+      with: # shimataro/ssh-key-actionに渡すパラメーター
+        key: ${{ secrets.SSH_KEY }} # 必須
+        name: sakura # 省略可
+        known_hosts: ${{ secrets.KNOWN_HOSTS }} # 必須
+    - name: run deploy script
+      run: bash deploy.sh
+
