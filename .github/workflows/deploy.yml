@@ -13,12 +13,20 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: deploy file
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
-        with:
-          username: ${{ secrets.USER }}
-          server: ${{ secrets.IP_ADDRESS }}
-          ssh_private_key: ${{ secrets.SSH_KEY }}
-          local_path: './profile/*'
-          remote_path: '/var/www/html/'
-          sftpArgs: '-o ConnectTimeout=5'
+      - name: Deploy to Staging server
+        uses: easingthemes/ssh-deploy@main
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
+          ARGS: "-rlgoDzvc -i"
+          SOURCE: "dist/"
+          REMOTE_HOST: ${{ secrets.IP_ADDRESS }}
+          REMOTE_USER: ${{ secrets.USER }}
+          TARGET: '/var/www/html/'
+          EXCLUDE: "/dist/, /node_modules/"
+          SCRIPT_BEFORE: |
+            whoami
+            ls -al
+          SCRIPT_AFTER: |
+            whoami
+            ls -al
+            echo $RSYNC_STDOUT
